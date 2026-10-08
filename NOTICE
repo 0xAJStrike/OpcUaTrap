@@ -1,0 +1,9 @@
+OpcUaTrap
+Copyright 2026 0xAJStrike (https://github.com/0xAJStrike)
+
+A high-interaction OPC UA ICS/SCADA honeypot.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product builds on LibUA (https://github.com/nauful/LibUA),
+Copyright Nauful Shaikh / QuantenSystems LLC, licensed under the
+Apache License, Version 2.0.

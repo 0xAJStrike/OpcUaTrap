@@ -1,0 +1,368 @@
+{
+  "profileName": "water-treatment",
+  "facilityName": "Cascade Municipal Water Treatment Plant",
+  "identity": {
+    "applicationName": "AquaView SCADA Server",
+    "applicationUri": "urn:cascade:aquaview:scada:WTP-01",
+    "organizationName": "Cascade Municipal Water Authority",
+    "location": "Portland"
+  },
+  "tagClassification": {
+    "criticalPrefixes": ["CL2_", "ESD_", "SDV_"],
+    "criticalContains": ["_CMD_", "_SP_", "_LAHH", "_LAL", "_XV", "_DOSE_SP"],
+    "criticalExact": ["CL2_DOSE_SP_001", "CL2_DOSE_SP_002", "NH3_DOSE_SP_001", "FLOC_DOSE_SP_001", "CW_LAHH", "CW_LAL", "ESD_CMD_TRIGGER", "ESD_CMD_RESET", "INTAKE_XV_001"],
+    "sensitivePrefixes": ["INTAKE_", "COAG_", "FLOC_", "SED_", "FILT_", "CL2_", "NH3_", "CW_", "DIST_", "TURB_", "PH_"]
+  },
+  "folders": [
+    {
+      "id": "Site_Information",
+      "displayName": "Site Information",
+      "variables": [
+        { "id": "SITE_NAME", "displayName": "Plant Name", "dataType": "String", "value": "Cascade WTP #1", "writable": false },
+        { "id": "SITE_LOCATION", "displayName": "Location", "dataType": "String", "value": "45.5152N, 122.6784W", "writable": false },
+        { "id": "SITE_OPERATOR", "displayName": "Operator", "dataType": "String", "value": "Cascade Municipal Water Authority", "writable": false },
+        { "id": "SITE_PERMIT", "displayName": "NPDES Permit", "dataType": "String", "value": "OR-0024601", "writable": false },
+        { "id": "SITE_CAPACITY", "displayName": "Design Capacity (MGD)", "dataType": "String", "value": "50", "writable": false }
+      ]
+    },
+    {
+      "id": "RawWaterIntake",
+      "displayName": "Raw Water Intake",
+      "children": [
+        {
+          "id": "INTAKE_001",
+          "displayName": "River Intake Structure",
+          "variables": [
+            { "id": "INTAKE_FT_001", "displayName": "Raw Water Flow (MGD)", "dataType": "Double", "nominal": 32.5, "min": 0, "max": 55, "noisePercent": 2.0 },
+            { "id": "INTAKE_LT_001", "displayName": "Intake Well Level (ft)", "dataType": "Double", "nominal": 18.5, "min": 8, "max": 25, "noisePercent": 1.5 },
+            { "id": "INTAKE_TURB_001", "displayName": "Raw Water Turbidity (NTU)", "dataType": "Double", "nominal": 12.0, "min": 0.5, "max": 500, "noisePercent": 8.0 },
+            { "id": "INTAKE_PH_001", "displayName": "Raw Water pH", "dataType": "Double", "nominal": 7.2, "min": 5.0, "max": 9.5, "noisePercent": 0.5 },
+            { "id": "INTAKE_TT_001", "displayName": "Raw Water Temp (F)", "dataType": "Double", "nominal": 52, "min": 35, "max": 75, "noisePercent": 0.3 },
+            { "id": "INTAKE_PMP_001_RUN", "displayName": "Intake Pump 1 Run", "dataType": "Boolean", "value": true },
+            { "id": "INTAKE_PMP_002_RUN", "displayName": "Intake Pump 2 Run", "dataType": "Boolean", "value": true },
+            { "id": "INTAKE_PMP_003_RUN", "displayName": "Intake Pump 3 Standby", "dataType": "Boolean", "value": false },
+            { "id": "INTAKE_XV_001", "displayName": "Intake Isolation Valve", "dataType": "Boolean", "value": true },
+            { "id": "INTAKE_PMP_001_CMD_START", "displayName": "Pump 1 Start", "dataType": "Boolean", "value": false },
+            { "id": "INTAKE_PMP_001_CMD_STOP", "displayName": "Pump 1 Stop", "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Coagulation",
+      "displayName": "Coagulation / Rapid Mix",
+      "children": [
+        {
+          "id": "COAG_001",
+          "displayName": "Rapid Mix Basin",
+          "variables": [
+            { "id": "COAG_MIX_SPD_001", "displayName": "Mixer Speed (RPM)", "dataType": "Double", "nominal": 85, "min": 20, "max": 120, "noisePercent": 1.0 },
+            { "id": "COAG_MIX_AMP_001", "displayName": "Mixer Motor Current (A)", "dataType": "Double", "nominal": 12.5, "min": 3, "max": 25, "noisePercent": 2.0 },
+            { "id": "COAG_PH_001", "displayName": "Post-Coag pH", "dataType": "Double", "nominal": 6.8, "min": 5.0, "max": 9.0, "noisePercent": 0.8 },
+            { "id": "COAG_TURB_001", "displayName": "Post-Coag Turbidity (NTU)", "dataType": "Double", "nominal": 8.5, "min": 0.5, "max": 200, "noisePercent": 5.0 }
+          ]
+        },
+        {
+          "id": "COAG_CHEM",
+          "displayName": "Coagulant Chemical Feed",
+          "variables": [
+            { "id": "COAG_DOSE_RATE_001", "displayName": "Alum Dose Rate (mg/L)", "dataType": "Double", "nominal": 28, "min": 5, "max": 80, "noisePercent": 2.0 },
+            { "id": "COAG_DOSE_SP_001", "displayName": "Alum Dose Setpoint (mg/L)", "dataType": "Double", "nominal": 28, "min": 5, "max": 80, "noisePercent": 0.0 },
+            { "id": "COAG_PMP_001_RUN", "displayName": "Alum Metering Pump Run", "dataType": "Boolean", "value": true },
+            { "id": "COAG_PMP_001_CMD_START", "displayName": "Alum Pump Start", "dataType": "Boolean", "value": false },
+            { "id": "COAG_PMP_001_CMD_STOP", "displayName": "Alum Pump Stop", "dataType": "Boolean", "value": false },
+            { "id": "COAG_TANK_LT_001", "displayName": "Alum Storage Tank Level (%)", "dataType": "Double", "nominal": 65, "min": 5, "max": 100, "noisePercent": 0.2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Flocculation",
+      "displayName": "Flocculation",
+      "children": [
+        {
+          "id": "FLOC_001",
+          "displayName": "Floc Basin 1",
+          "variables": [
+            { "id": "FLOC_MIX_SPD_001", "displayName": "Slow Mixer Speed (RPM)", "dataType": "Double", "nominal": 4.5, "min": 1, "max": 12, "noisePercent": 1.5 },
+            { "id": "FLOC_DOSE_RATE_001", "displayName": "Polymer Feed Rate (mL/min)", "dataType": "Double", "nominal": 120, "min": 10, "max": 500, "noisePercent": 3.0 },
+            { "id": "FLOC_DOSE_SP_001", "displayName": "Polymer Feed Setpoint (mL/min)", "dataType": "Double", "nominal": 120, "min": 10, "max": 500, "noisePercent": 0.0 },
+            { "id": "FLOC_PMP_001_RUN", "displayName": "Polymer Pump Run", "dataType": "Boolean", "value": true },
+            { "id": "FLOC_PMP_001_CMD_START", "displayName": "Polymer Pump Start", "dataType": "Boolean", "value": false },
+            { "id": "FLOC_PMP_001_CMD_STOP", "displayName": "Polymer Pump Stop", "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Sedimentation",
+      "displayName": "Sedimentation Basins",
+      "children": [
+        {
+          "id": "SED_001",
+          "displayName": "Sed Basin 1",
+          "variables": [
+            { "id": "SED_LT_001", "displayName": "Basin Level (ft)", "dataType": "Double", "nominal": 14.2, "min": 8, "max": 16, "noisePercent": 0.5 },
+            { "id": "SED_TURB_001", "displayName": "Effluent Turbidity (NTU)", "dataType": "Double", "nominal": 2.8, "min": 0.1, "max": 50, "noisePercent": 6.0 },
+            { "id": "SED_SLUDGE_001", "displayName": "Sludge Blanket Depth (ft)", "dataType": "Double", "nominal": 3.2, "min": 0, "max": 10, "noisePercent": 3.0 },
+            { "id": "SED_SCRAPER_001_RUN", "displayName": "Sludge Scraper Run", "dataType": "Boolean", "value": true }
+          ]
+        },
+        {
+          "id": "SED_002",
+          "displayName": "Sed Basin 2",
+          "variables": [
+            { "id": "SED_LT_002", "displayName": "Basin Level (ft)", "dataType": "Double", "nominal": 14.0, "min": 8, "max": 16, "noisePercent": 0.5 },
+            { "id": "SED_TURB_002", "displayName": "Effluent Turbidity (NTU)", "dataType": "Double", "nominal": 3.1, "min": 0.1, "max": 50, "noisePercent": 6.0 },
+            { "id": "SED_SLUDGE_002", "displayName": "Sludge Blanket Depth (ft)", "dataType": "Double", "nominal": 2.9, "min": 0, "max": 10, "noisePercent": 3.0 },
+            { "id": "SED_SCRAPER_002_RUN", "displayName": "Sludge Scraper Run", "dataType": "Boolean", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Filtration",
+      "displayName": "Filtration",
+      "children": [
+        {
+          "id": "FILT_001",
+          "displayName": "Filter 1",
+          "variables": [
+            { "id": "FILT_DP_001", "displayName": "Differential Pressure (psi)", "dataType": "Double", "nominal": 2.8, "min": 0.5, "max": 8, "noisePercent": 3.0 },
+            { "id": "FILT_TURB_001", "displayName": "Filtered Turbidity (NTU)", "dataType": "Double", "nominal": 0.08, "min": 0.01, "max": 1.0, "noisePercent": 10.0 },
+            { "id": "FILT_FLOW_001", "displayName": "Filter Flow (MGD)", "dataType": "Double", "nominal": 8.2, "min": 0, "max": 14, "noisePercent": 2.0 },
+            { "id": "FILT_BW_STATUS_001", "displayName": "Backwash Active", "dataType": "Boolean", "value": false },
+            { "id": "FILT_RUNHRS_001", "displayName": "Hours Since Backwash", "dataType": "Double", "nominal": 18, "min": 0, "max": 72, "noisePercent": 0.0 }
+          ]
+        },
+        {
+          "id": "FILT_002",
+          "displayName": "Filter 2",
+          "variables": [
+            { "id": "FILT_DP_002", "displayName": "Differential Pressure (psi)", "dataType": "Double", "nominal": 3.2, "min": 0.5, "max": 8, "noisePercent": 3.0 },
+            { "id": "FILT_TURB_002", "displayName": "Filtered Turbidity (NTU)", "dataType": "Double", "nominal": 0.06, "min": 0.01, "max": 1.0, "noisePercent": 10.0 },
+            { "id": "FILT_FLOW_002", "displayName": "Filter Flow (MGD)", "dataType": "Double", "nominal": 8.0, "min": 0, "max": 14, "noisePercent": 2.0 },
+            { "id": "FILT_BW_STATUS_002", "displayName": "Backwash Active", "dataType": "Boolean", "value": false },
+            { "id": "FILT_RUNHRS_002", "displayName": "Hours Since Backwash", "dataType": "Double", "nominal": 42, "min": 0, "max": 72, "noisePercent": 0.0 }
+          ]
+        },
+        {
+          "id": "FILT_003",
+          "displayName": "Filter 3",
+          "variables": [
+            { "id": "FILT_DP_003", "displayName": "Differential Pressure (psi)", "dataType": "Double", "nominal": 1.5, "min": 0.5, "max": 8, "noisePercent": 3.0 },
+            { "id": "FILT_TURB_003", "displayName": "Filtered Turbidity (NTU)", "dataType": "Double", "nominal": 0.05, "min": 0.01, "max": 1.0, "noisePercent": 10.0 },
+            { "id": "FILT_FLOW_003", "displayName": "Filter Flow (MGD)", "dataType": "Double", "nominal": 8.4, "min": 0, "max": 14, "noisePercent": 2.0 },
+            { "id": "FILT_BW_STATUS_003", "displayName": "Backwash Active", "dataType": "Boolean", "value": false },
+            { "id": "FILT_RUNHRS_003", "displayName": "Hours Since Backwash", "dataType": "Double", "nominal": 6, "min": 0, "max": 72, "noisePercent": 0.0 }
+          ]
+        },
+        {
+          "id": "FILT_004",
+          "displayName": "Filter 4",
+          "variables": [
+            { "id": "FILT_DP_004", "displayName": "Differential Pressure (psi)", "dataType": "Double", "nominal": 4.1, "min": 0.5, "max": 8, "noisePercent": 3.0 },
+            { "id": "FILT_TURB_004", "displayName": "Filtered Turbidity (NTU)", "dataType": "Double", "nominal": 0.09, "min": 0.01, "max": 1.0, "noisePercent": 10.0 },
+            { "id": "FILT_FLOW_004", "displayName": "Filter Flow (MGD)", "dataType": "Double", "nominal": 7.9, "min": 0, "max": 14, "noisePercent": 2.0 },
+            { "id": "FILT_BW_STATUS_004", "displayName": "Backwash Active", "dataType": "Boolean", "value": false },
+            { "id": "FILT_RUNHRS_004", "displayName": "Hours Since Backwash", "dataType": "Double", "nominal": 55, "min": 0, "max": 72, "noisePercent": 0.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Disinfection",
+      "displayName": "Disinfection",
+      "children": [
+        {
+          "id": "CL2_PRIMARY",
+          "displayName": "Primary Chlorination",
+          "variables": [
+            { "id": "CL2_DOSE_RATE_001", "displayName": "Chlorine Dose Rate (mg/L)", "dataType": "Double", "nominal": 2.8, "min": 0, "max": 10, "noisePercent": 2.0 },
+            { "id": "CL2_DOSE_SP_001", "displayName": "Chlorine Dose Setpoint (mg/L)", "dataType": "Double", "nominal": 2.8, "min": 0, "max": 10, "noisePercent": 0.0 },
+            { "id": "CL2_RESIDUAL_001", "displayName": "Free Chlorine Residual (mg/L)", "dataType": "Double", "nominal": 1.2, "min": 0, "max": 5, "noisePercent": 3.0 },
+            { "id": "CL2_CONTACT_TIME_001", "displayName": "CT Value (mg*min/L)", "dataType": "Double", "nominal": 145, "min": 0, "max": 300, "noisePercent": 2.0 },
+            { "id": "CL2_PMP_001_RUN", "displayName": "Chlorine Pump 1 Run", "dataType": "Boolean", "value": true },
+            { "id": "CL2_PMP_001_CMD_START", "displayName": "Chlorine Pump Start", "dataType": "Boolean", "value": false },
+            { "id": "CL2_PMP_001_CMD_STOP", "displayName": "Chlorine Pump Stop", "dataType": "Boolean", "value": false },
+            { "id": "CL2_TANK_LT_001", "displayName": "Chlorine Storage Level (%)", "dataType": "Double", "nominal": 72, "min": 5, "max": 100, "noisePercent": 0.1 }
+          ]
+        },
+        {
+          "id": "CL2_SECONDARY",
+          "displayName": "Secondary Chlorination (Distribution)",
+          "variables": [
+            { "id": "CL2_DOSE_RATE_002", "displayName": "Booster Chlorine Rate (mg/L)", "dataType": "Double", "nominal": 0.8, "min": 0, "max": 5, "noisePercent": 2.5 },
+            { "id": "CL2_DOSE_SP_002", "displayName": "Booster Chlorine Setpoint (mg/L)", "dataType": "Double", "nominal": 0.8, "min": 0, "max": 5, "noisePercent": 0.0 },
+            { "id": "CL2_RESIDUAL_002", "displayName": "Distribution Residual (mg/L)", "dataType": "Double", "nominal": 0.6, "min": 0, "max": 3, "noisePercent": 4.0 }
+          ]
+        },
+        {
+          "id": "NH3_FEED",
+          "displayName": "Ammonia Feed (Chloramine)",
+          "variables": [
+            { "id": "NH3_DOSE_RATE_001", "displayName": "Ammonia Dose Rate (mg/L)", "dataType": "Double", "nominal": 0.9, "min": 0, "max": 3, "noisePercent": 2.0 },
+            { "id": "NH3_DOSE_SP_001", "displayName": "Ammonia Dose Setpoint (mg/L)", "dataType": "Double", "nominal": 0.9, "min": 0, "max": 3, "noisePercent": 0.0 },
+            { "id": "NH3_PMP_001_RUN", "displayName": "Ammonia Pump Run", "dataType": "Boolean", "value": true },
+            { "id": "NH3_TANK_LT_001", "displayName": "Ammonia Storage Level (%)", "dataType": "Double", "nominal": 58, "min": 5, "max": 100, "noisePercent": 0.1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ClearWell",
+      "displayName": "Clear Well Storage",
+      "children": [
+        {
+          "id": "CW_001",
+          "displayName": "Clear Well 1",
+          "variables": [
+            { "id": "CW_LT_001", "displayName": "Clear Well Level (ft)", "dataType": "Double", "nominal": 22.5, "min": 5, "max": 30, "noisePercent": 0.3 },
+            { "id": "CW_LAHH", "displayName": "High-High Level Alarm (ft)", "dataType": "Double", "nominal": 28, "min": 25, "max": 30, "noisePercent": 0.0 },
+            { "id": "CW_LAL", "displayName": "Low Level Alarm (ft)", "dataType": "Double", "nominal": 8, "min": 5, "max": 12, "noisePercent": 0.0 },
+            { "id": "CW_TURB_001", "displayName": "Finished Water Turbidity (NTU)", "dataType": "Double", "nominal": 0.04, "min": 0.01, "max": 0.5, "noisePercent": 8.0 },
+            { "id": "CW_PH_001", "displayName": "Finished Water pH", "dataType": "Double", "nominal": 7.5, "min": 6.5, "max": 8.5, "noisePercent": 0.3 },
+            { "id": "CW_CL2_001", "displayName": "Finished Cl2 Residual (mg/L)", "dataType": "Double", "nominal": 1.0, "min": 0, "max": 4, "noisePercent": 3.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Distribution",
+      "displayName": "Distribution System",
+      "children": [
+        {
+          "id": "DIST_PMP",
+          "displayName": "High Service Pumps",
+          "variables": [
+            { "id": "DIST_PMP_001_RUN", "displayName": "HS Pump 1 Run", "dataType": "Boolean", "value": true },
+            { "id": "DIST_PMP_002_RUN", "displayName": "HS Pump 2 Run", "dataType": "Boolean", "value": true },
+            { "id": "DIST_PMP_003_RUN", "displayName": "HS Pump 3 Standby", "dataType": "Boolean", "value": false },
+            { "id": "DIST_PMP_001_SPD", "displayName": "Pump 1 Speed (RPM)", "dataType": "Double", "nominal": 1180, "min": 600, "max": 1800, "noisePercent": 0.5 },
+            { "id": "DIST_PMP_002_SPD", "displayName": "Pump 2 Speed (RPM)", "dataType": "Double", "nominal": 1150, "min": 600, "max": 1800, "noisePercent": 0.5 },
+            { "id": "DIST_PMP_001_CMD_START", "displayName": "Pump 1 Start", "dataType": "Boolean", "value": false },
+            { "id": "DIST_PMP_001_CMD_STOP", "displayName": "Pump 1 Stop", "dataType": "Boolean", "value": false },
+            { "id": "DIST_PT_DIS_001", "displayName": "Discharge Pressure (psi)", "dataType": "Double", "nominal": 68, "min": 30, "max": 100, "noisePercent": 1.0 }
+          ]
+        },
+        {
+          "id": "DIST_SYS",
+          "displayName": "Distribution Monitoring",
+          "variables": [
+            { "id": "DIST_PT_001", "displayName": "System Pressure Zone 1 (psi)", "dataType": "Double", "nominal": 62, "min": 30, "max": 90, "noisePercent": 1.5 },
+            { "id": "DIST_PT_002", "displayName": "System Pressure Zone 2 (psi)", "dataType": "Double", "nominal": 58, "min": 30, "max": 90, "noisePercent": 1.5 },
+            { "id": "DIST_FT_TOTAL", "displayName": "Total Distribution Flow (MGD)", "dataType": "Double", "nominal": 31.8, "min": 15, "max": 52, "noisePercent": 2.0 },
+            { "id": "DIST_TANK_LT_001", "displayName": "Elevated Tank Level (ft)", "dataType": "Double", "nominal": 28, "min": 10, "max": 40, "noisePercent": 0.3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SafetySystems",
+      "displayName": "Safety Systems",
+      "children": [
+        {
+          "id": "ESD",
+          "displayName": "Emergency Shutdown",
+          "variables": [
+            { "id": "ESD_STATUS", "displayName": "ESD Status (0=Healthy)", "dataType": "Int32", "value": 0, "writable": false },
+            { "id": "ESD_LEVEL", "displayName": "ESD Level (0-3)", "dataType": "Int32", "value": 0, "writable": false }
+          ],
+          "methods": [
+            { "id": "ESD_CMD_TRIGGER", "displayName": "Trigger Emergency Shutdown" },
+            { "id": "ESD_CMD_RESET", "displayName": "Reset Emergency Shutdown" }
+          ]
+        },
+        {
+          "id": "CHEM_SAFETY",
+          "displayName": "Chemical Safety",
+          "variables": [
+            { "id": "CL2_LEAK_DET_001", "displayName": "Chlorine Leak Detector 1 (ppm)", "dataType": "Double", "nominal": 0.1, "min": 0, "max": 50, "noisePercent": 15.0 },
+            { "id": "CL2_LEAK_DET_002", "displayName": "Chlorine Leak Detector 2 (ppm)", "dataType": "Double", "nominal": 0.05, "min": 0, "max": 50, "noisePercent": 15.0 },
+            { "id": "CL2_LEAK_ALM", "displayName": "Chlorine Leak Alarm", "dataType": "Boolean", "value": false },
+            { "id": "NH3_LEAK_DET_001", "displayName": "Ammonia Leak Detector (ppm)", "dataType": "Double", "nominal": 0.2, "min": 0, "max": 100, "noisePercent": 10.0 },
+            { "id": "NH3_LEAK_ALM", "displayName": "Ammonia Leak Alarm", "dataType": "Boolean", "value": false },
+            { "id": "SDV_CL2_001", "displayName": "Chlorine Isolation Valve", "dataType": "Boolean", "value": true },
+            { "id": "SDV_NH3_001", "displayName": "Ammonia Isolation Valve", "dataType": "Boolean", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Utilities",
+      "displayName": "Utilities",
+      "children": [
+        {
+          "id": "POWER",
+          "displayName": "Power",
+          "variables": [
+            { "id": "PWR_MAIN_STATUS", "displayName": "Main Power Status", "dataType": "Boolean", "value": true },
+            { "id": "PWR_GEN_STATUS", "displayName": "Backup Generator Status", "dataType": "Boolean", "value": false },
+            { "id": "PWR_VOLTS", "displayName": "Bus Voltage (V)", "dataType": "Double", "nominal": 480, "min": 460, "max": 500, "noisePercent": 0.3 },
+            { "id": "PWR_LOAD", "displayName": "Total Plant Load (kW)", "dataType": "Double", "nominal": 850, "min": 200, "max": 1500, "noisePercent": 1.5 }
+          ]
+        },
+        {
+          "id": "SCADA",
+          "displayName": "SCADA System",
+          "variables": [
+            { "id": "SCADA_PLC_001_STATUS", "displayName": "PLC-1 Status", "dataType": "Boolean", "value": true, "writable": false },
+            { "id": "SCADA_PLC_002_STATUS", "displayName": "PLC-2 Status", "dataType": "Boolean", "value": true, "writable": false },
+            { "id": "SCADA_HIST_CONN", "displayName": "Historian Connected", "dataType": "Boolean", "value": true, "writable": false },
+            { "id": "SCADA_ALARM_COUNT", "displayName": "Active Alarms", "dataType": "Int32", "value": 2, "writable": false }
+          ]
+        }
+      ]
+    }
+  ],
+  "simulationRules": [
+    { "pattern": "CW_LT_*", "behavior": "tankFill", "fillRate": 0.01, "drainInterval": 300, "drainPercent": 0.08 },
+    { "pattern": "DIST_TANK_LT_*", "behavior": "tankFill", "fillRate": 0.005, "drainInterval": 600, "drainPercent": 0.12 },
+    { "pattern": "COAG_TANK_LT_*", "behavior": "slowDecline", "rate": 0.005 },
+    { "pattern": "CL2_TANK_LT_*", "behavior": "slowDecline", "rate": 0.003 },
+    { "pattern": "NH3_TANK_LT_*", "behavior": "slowDecline", "rate": 0.002 }
+  ],
+  "hardening": {
+    "errorHandling": {
+      "suppressInternalErrors": true,
+      "exposeDiagnosticInfo": false
+    },
+    "timing": {
+      "enabled": true,
+      "minDelayMs": 25,
+      "maxDelayMs": 80
+    },
+    "serverStatus": {
+      "manufacturer": "Rockwell Automation",
+      "productName": "ControlLogix 1756-L73",
+      "softwareVersion": "32.013",
+      "buildNumber": "32013-20220615",
+      "startupAgeMinDays": 30,
+      "startupAgeMaxDays": 120,
+      "cumulatedSessionCountBase": 850
+    },
+    "serviceRestrictions": {
+      "historyReadEnabled": false,
+      "maxNodesPerRead": 500,
+      "maxNodesPerBrowse": 1000
+    },
+    "resourceLimits": {
+      "maxSessions": 10,
+      "maxSubscriptionsPerSession": 20,
+      "maxMonitoredItemsPerSubscription": 200
+    },
+    "authentication": {
+      "allowAnonymous": true,
+      "requireEncryption": false,
+      "allowedSecurityPolicies": [ "None", "Basic256Sha256" ],
+      "credentialBehavior": "accept-all",
+      "decoyCredentials": [],
+      "failedLoginDelayMs": 0,
+      "accountLockout": {
+        "enabled": false,
+        "threshold": 10,
+        "durationSeconds": 60
+      }
+    }
+  }
+}

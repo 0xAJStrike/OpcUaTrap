@@ -1,0 +1,56 @@
+# Filebeat configuration for OpcUaTrap → Elasticsearch/Kibana
+# Tails the NDJSON log and ships events directly to Elasticsearch.
+#
+# Usage:
+#   filebeat -e -c filebeat.yml
+#
+# Requires Filebeat 8.x. Download: https://www.elastic.co/downloads/beats/filebeat
+
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - "C:/Tools/OpcUaTrap/logs/*.jsonl"     # adjust path if deployed elsewhere
+    json.keys_under_root: true                 # lift JSON fields to top level
+    json.add_error_key: true                   # surface parse errors as a field
+    json.expand_keys: true                     # flatten nested objects (details.*)
+    multiline.negate: false                    # each line is a complete JSON record
+
+    # Tag every event with the source so you can filter in Kibana
+    tags: ["opcuatrap", "ics-honeypot"]
+
+    # Exclude the details wrapper key (already expanded by expand_keys)
+    processors:
+      - decode_json_fields:
+          fields: ["details"]
+          target: ""
+          overwrite_keys: true
+          when:
+            has_fields: ["details"]
+
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]             # change to your ES host
+  # api_key: "id:api_key"                     # uncomment if using API key auth
+  # username: "elastic"                        # uncomment if using basic auth
+  # password: "changeme"
+
+  index: "opcuatrap-%{+yyyy.MM.dd}"
+
+setup.template.name: "opcuatrap"
+setup.template.pattern: "opcuatrap-*"
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 0                  # set to 1 for multi-node clusters
+
+setup.ilm.enabled: false                       # use simple date-based indices
+
+# Kibana connection (for dashboard import)
+setup.kibana:
+  host: "http://localhost:5601"
+
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7

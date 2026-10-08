@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OpcUaTrap/OpcUaTrap.csproj" />
+  </Folder>
+  <Project Path="../LibUA/NET-Core/LibUA/LibUA.csproj" />
+</Solution>

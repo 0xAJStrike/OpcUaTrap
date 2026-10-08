@@ -1,0 +1,390 @@
+{
+  "profileName": "power-grid",
+  "facilityName": "Ridgeline 138kV Transmission Substation",
+  "identity": {
+    "applicationName": "Ridgeline RTU SCADA Gateway",
+    "applicationUri": "urn:tristate:scada:rtu:RDL-138-SUB-07",
+    "organizationName": "Tri-State Power & Transmission",
+    "location": "Denver"
+  },
+  "tagClassification": {
+    "criticalPrefixes": ["LOCKOUT_", "ESD_"],
+    "criticalContains": ["_CMD_OPEN", "_CMD_CLOSE", "_CMD_TRIP", "_CMD_RAISE", "_CMD_LOWER", "_ENABLED", "_CMD_TRIGGER", "_CMD_RESET"],
+    "criticalExact": [
+      "BUS_138KV_FREQ",
+      "CB_138KV_MAIN_STATUS",
+      "CB_138KV_TIE_STATUS",
+      "TX_001_TAP_POS",
+      "TX_002_TAP_POS",
+      "REL_OC_001_ENABLED",
+      "REL_DIFF_001_ENABLED",
+      "REL_DIST_001_ENABLED",
+      "LOCKOUT_RLY_001_STATUS",
+      "ESD_STATUS"
+    ],
+    "sensitivePrefixes": ["TX_", "FDR_", "BUS_", "CAP_", "REL_", "BATT_", "CB_"]
+  },
+  "folders": [
+    {
+      "id": "Site_Information",
+      "displayName": "Site Information",
+      "variables": [
+        { "id": "SITE_NAME",         "displayName": "Substation Name",      "dataType": "String", "value": "Ridgeline 138kV Transmission Substation", "writable": false },
+        { "id": "SITE_LOCATION",     "displayName": "GPS Coordinates",      "dataType": "String", "value": "39.7425N, 104.9891W",                     "writable": false },
+        { "id": "SITE_OPERATOR",     "displayName": "Operator",             "dataType": "String", "value": "Tri-State Power & Transmission",           "writable": false },
+        { "id": "SITE_NERC_ID",      "displayName": "NERC Facility ID",     "dataType": "String", "value": "TSPT-RDL-07",                              "writable": false },
+        { "id": "SITE_VOLTAGE_CLASS","displayName": "Voltage Class",        "dataType": "String", "value": "138kV / 13.8kV",                           "writable": false },
+        { "id": "SITE_MVA_CAPACITY", "displayName": "Total Installed MVA",  "dataType": "String", "value": "100 MVA (2 x 50 MVA)",                     "writable": false }
+      ]
+    },
+    {
+      "id": "HV_Bus",
+      "displayName": "High Voltage Bus (138kV)",
+      "children": [
+        {
+          "id": "BUS_138KV",
+          "displayName": "138kV Bus A",
+          "variables": [
+            { "id": "BUS_138KV_VA",   "displayName": "Phase A Voltage (kV)",  "dataType": "Double", "nominal": 79.82, "min": 75.6,  "max": 83.7, "noisePercent": 0.15 },
+            { "id": "BUS_138KV_VB",   "displayName": "Phase B Voltage (kV)",  "dataType": "Double", "nominal": 79.70, "min": 75.6,  "max": 83.7, "noisePercent": 0.15 },
+            { "id": "BUS_138KV_VC",   "displayName": "Phase C Voltage (kV)",  "dataType": "Double", "nominal": 79.91, "min": 75.6,  "max": 83.7, "noisePercent": 0.15 },
+            { "id": "BUS_138KV_VLL",  "displayName": "Line Voltage (kV)",     "dataType": "Double", "nominal": 138.2, "min": 131.0, "max": 145.0, "noisePercent": 0.12 },
+            { "id": "BUS_138KV_FREQ", "displayName": "Frequency (Hz)",        "dataType": "Double", "nominal": 60.00, "min": 59.95, "max": 60.05, "noisePercent": 0.03 },
+            { "id": "BUS_138KV_MW",   "displayName": "Real Power (MW)",       "dataType": "Double", "nominal": 31.4,  "min": 8.0,   "max": 62.0,  "noisePercent": 2.5  },
+            { "id": "BUS_138KV_MVAR", "displayName": "Reactive Power (MVAR)", "dataType": "Double", "nominal": 8.2,   "min": -5.0,  "max": 20.0,  "noisePercent": 4.0  },
+            { "id": "BUS_138KV_PF",   "displayName": "Power Factor",          "dataType": "Double", "nominal": 0.967, "min": 0.85,  "max": 1.0,   "noisePercent": 0.5  }
+          ]
+        },
+        {
+          "id": "CB_138KV_MAIN",
+          "displayName": "138kV Main Breaker (CB-101)",
+          "variables": [
+            { "id": "CB_138KV_MAIN_STATUS",    "displayName": "Breaker Status (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "CB_138KV_MAIN_CURRENT",   "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 131,  "min": 35,   "max": 259,  "noisePercent": 2.5 },
+            { "id": "CB_138KV_MAIN_OPS",       "displayName": "Total Operations Count",    "dataType": "Int32",   "value": 847,  "writable": false },
+            { "id": "CB_138KV_MAIN_SF6",       "displayName": "SF6 Pressure (PSI)",        "dataType": "Double",  "nominal": 69.5, "min": 65.0, "max": 75.0, "noisePercent": 0.2 },
+            { "id": "CB_138KV_MAIN_CMD_OPEN",  "displayName": "Trip Command",              "dataType": "Boolean", "value": false },
+            { "id": "CB_138KV_MAIN_CMD_CLOSE", "displayName": "Close Command",             "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "CB_138KV_TIE",
+          "displayName": "138kV Bus Tie Breaker (CB-102)",
+          "variables": [
+            { "id": "CB_138KV_TIE_STATUS",    "displayName": "Breaker Status (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "CB_138KV_TIE_CURRENT",   "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 65,   "min": 0,    "max": 259,  "noisePercent": 3.0 },
+            { "id": "CB_138KV_TIE_SF6",       "displayName": "SF6 Pressure (PSI)",        "dataType": "Double",  "nominal": 70.1, "min": 65.0, "max": 75.0, "noisePercent": 0.2 },
+            { "id": "CB_138KV_TIE_CMD_OPEN",  "displayName": "Trip Command",              "dataType": "Boolean", "value": false },
+            { "id": "CB_138KV_TIE_CMD_CLOSE", "displayName": "Close Command",             "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Transformers",
+      "displayName": "Power Transformers",
+      "children": [
+        {
+          "id": "TX_001",
+          "displayName": "Transformer T1 (50 MVA, 138kV/13.8kV)",
+          "variables": [
+            { "id": "TX_001_V_PRI",       "displayName": "Primary Voltage (kV)",       "dataType": "Double",  "nominal": 138.2, "min": 131.0, "max": 145.0, "noisePercent": 0.12 },
+            { "id": "TX_001_V_SEC",       "displayName": "Secondary Voltage (kV)",     "dataType": "Double",  "nominal": 13.82, "min": 13.0,  "max": 14.5,  "noisePercent": 0.10 },
+            { "id": "TX_001_I_PRI",       "displayName": "Primary Current (A)",        "dataType": "Double",  "nominal": 88,    "min": 10,    "max": 210,   "noisePercent": 2.0  },
+            { "id": "TX_001_I_SEC",       "displayName": "Secondary Current (A)",      "dataType": "Double",  "nominal": 880,   "min": 100,   "max": 2100,  "noisePercent": 2.0  },
+            { "id": "TX_001_TOP_OIL_TEMP","displayName": "Top Oil Temperature (C)",    "dataType": "Double",  "nominal": 62,    "min": 15,    "max": 105,   "noisePercent": 0.8  },
+            { "id": "TX_001_WINDING_TEMP","displayName": "Hot Spot Winding Temp (C)",  "dataType": "Double",  "nominal": 74,    "min": 20,    "max": 120,   "noisePercent": 1.0  },
+            { "id": "TX_001_TAP_POS",     "displayName": "LTC Tap Position (1-17)",   "dataType": "Int32",   "value": 9,  "writable": false },
+            { "id": "TX_001_LOAD_PCT",    "displayName": "MVA Loading (%)",            "dataType": "Double",  "nominal": 61,    "min": 5,     "max": 105,   "noisePercent": 2.5  },
+            { "id": "TX_001_OIL_LEVEL",   "displayName": "Oil Level (%)",              "dataType": "Double",  "nominal": 78,    "min": 60,    "max": 100,   "noisePercent": 0.1  },
+            { "id": "TX_001_FANS_RUN",    "displayName": "Cooling Fans Running",       "dataType": "Boolean", "value": false },
+            { "id": "TX_001_TAP_CMD_RAISE","displayName": "Tap Raise Command",         "dataType": "Boolean", "value": false },
+            { "id": "TX_001_TAP_CMD_LOWER","displayName": "Tap Lower Command",         "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "TX_002",
+          "displayName": "Transformer T2 (50 MVA, 138kV/13.8kV)",
+          "variables": [
+            { "id": "TX_002_V_PRI",       "displayName": "Primary Voltage (kV)",       "dataType": "Double",  "nominal": 138.1, "min": 131.0, "max": 145.0, "noisePercent": 0.12 },
+            { "id": "TX_002_V_SEC",       "displayName": "Secondary Voltage (kV)",     "dataType": "Double",  "nominal": 13.80, "min": 13.0,  "max": 14.5,  "noisePercent": 0.10 },
+            { "id": "TX_002_I_PRI",       "displayName": "Primary Current (A)",        "dataType": "Double",  "nominal": 76,    "min": 10,    "max": 210,   "noisePercent": 2.0  },
+            { "id": "TX_002_I_SEC",       "displayName": "Secondary Current (A)",      "dataType": "Double",  "nominal": 760,   "min": 100,   "max": 2100,  "noisePercent": 2.0  },
+            { "id": "TX_002_TOP_OIL_TEMP","displayName": "Top Oil Temperature (C)",    "dataType": "Double",  "nominal": 58,    "min": 15,    "max": 105,   "noisePercent": 0.8  },
+            { "id": "TX_002_WINDING_TEMP","displayName": "Hot Spot Winding Temp (C)",  "dataType": "Double",  "nominal": 69,    "min": 20,    "max": 120,   "noisePercent": 1.0  },
+            { "id": "TX_002_TAP_POS",     "displayName": "LTC Tap Position (1-17)",   "dataType": "Int32",   "value": 8,  "writable": false },
+            { "id": "TX_002_LOAD_PCT",    "displayName": "MVA Loading (%)",            "dataType": "Double",  "nominal": 52,    "min": 5,     "max": 105,   "noisePercent": 2.5  },
+            { "id": "TX_002_OIL_LEVEL",   "displayName": "Oil Level (%)",              "dataType": "Double",  "nominal": 81,    "min": 60,    "max": 100,   "noisePercent": 0.1  },
+            { "id": "TX_002_FANS_RUN",    "displayName": "Cooling Fans Running",       "dataType": "Boolean", "value": false },
+            { "id": "TX_002_TAP_CMD_RAISE","displayName": "Tap Raise Command",         "dataType": "Boolean", "value": false },
+            { "id": "TX_002_TAP_CMD_LOWER","displayName": "Tap Lower Command",         "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LV_Bus",
+      "displayName": "Distribution Bus (13.8kV)",
+      "children": [
+        {
+          "id": "BUS_13KV_MAIN",
+          "displayName": "13.8kV Main Bus",
+          "variables": [
+            { "id": "BUS_13KV_VLL",      "displayName": "Bus Voltage (kV)",       "dataType": "Double", "nominal": 13.82, "min": 12.8,  "max": 14.5,  "noisePercent": 0.2  },
+            { "id": "BUS_13KV_FREQ",     "displayName": "Frequency (Hz)",         "dataType": "Double", "nominal": 60.00, "min": 59.95, "max": 60.05, "noisePercent": 0.03 },
+            { "id": "BUS_13KV_MW_TOTAL", "displayName": "Total Load (MW)",        "dataType": "Double", "nominal": 30.8,  "min": 8.0,   "max": 60.0,  "noisePercent": 2.0  },
+            { "id": "BUS_13KV_MVAR_TOT", "displayName": "Total Reactive (MVAR)",  "dataType": "Double", "nominal": 7.4,   "min": -8.0,  "max": 18.0,  "noisePercent": 3.5  },
+            { "id": "BUS_13KV_PF",       "displayName": "Power Factor",           "dataType": "Double", "nominal": 0.972, "min": 0.85,  "max": 1.0,   "noisePercent": 0.4  }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Feeders",
+      "displayName": "Distribution Feeders (13.8kV)",
+      "children": [
+        {
+          "id": "FDR_001",
+          "displayName": "Feeder F1 — Residential North",
+          "variables": [
+            { "id": "FDR_001_CB_STATUS",    "displayName": "Feeder Breaker (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "FDR_001_CURRENT",      "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 312, "min": 20,  "max": 560, "noisePercent": 3.0 },
+            { "id": "FDR_001_VOLTAGE",      "displayName": "Feeder Voltage (kV)",       "dataType": "Double",  "nominal": 13.65, "min": 12.8, "max": 14.5, "noisePercent": 0.2 },
+            { "id": "FDR_001_MW",           "displayName": "Real Power (MW)",           "dataType": "Double",  "nominal": 7.4,  "min": 0.5, "max": 14.0, "noisePercent": 3.0 },
+            { "id": "FDR_001_MVAR",         "displayName": "Reactive Power (MVAR)",     "dataType": "Double",  "nominal": 1.9,  "min": -2.0, "max": 5.0, "noisePercent": 5.0 },
+            { "id": "FDR_001_RECLOSER_OPS", "displayName": "Recloser Operations",       "dataType": "Int32",   "value": 12, "writable": false },
+            { "id": "FDR_001_CB_CMD_OPEN",  "displayName": "Trip Feeder",               "dataType": "Boolean", "value": false },
+            { "id": "FDR_001_CB_CMD_CLOSE", "displayName": "Close Feeder",              "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "FDR_002",
+          "displayName": "Feeder F2 — Industrial Park",
+          "variables": [
+            { "id": "FDR_002_CB_STATUS",    "displayName": "Feeder Breaker (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "FDR_002_CURRENT",      "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 448, "min": 50,  "max": 560, "noisePercent": 2.5 },
+            { "id": "FDR_002_VOLTAGE",      "displayName": "Feeder Voltage (kV)",       "dataType": "Double",  "nominal": 13.61, "min": 12.8, "max": 14.5, "noisePercent": 0.2 },
+            { "id": "FDR_002_MW",           "displayName": "Real Power (MW)",           "dataType": "Double",  "nominal": 10.6, "min": 1.0, "max": 14.0, "noisePercent": 2.5 },
+            { "id": "FDR_002_MVAR",         "displayName": "Reactive Power (MVAR)",     "dataType": "Double",  "nominal": 3.1,  "min": -1.0, "max": 6.0, "noisePercent": 4.0 },
+            { "id": "FDR_002_RECLOSER_OPS", "displayName": "Recloser Operations",       "dataType": "Int32",   "value": 5, "writable": false },
+            { "id": "FDR_002_CB_CMD_OPEN",  "displayName": "Trip Feeder",               "dataType": "Boolean", "value": false },
+            { "id": "FDR_002_CB_CMD_CLOSE", "displayName": "Close Feeder",              "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "FDR_003",
+          "displayName": "Feeder F3 — Commercial District",
+          "variables": [
+            { "id": "FDR_003_CB_STATUS",    "displayName": "Feeder Breaker (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "FDR_003_CURRENT",      "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 285, "min": 20,  "max": 520, "noisePercent": 3.5 },
+            { "id": "FDR_003_VOLTAGE",      "displayName": "Feeder Voltage (kV)",       "dataType": "Double",  "nominal": 13.68, "min": 12.8, "max": 14.5, "noisePercent": 0.2 },
+            { "id": "FDR_003_MW",           "displayName": "Real Power (MW)",           "dataType": "Double",  "nominal": 6.8,  "min": 0.5, "max": 13.0, "noisePercent": 4.0 },
+            { "id": "FDR_003_MVAR",         "displayName": "Reactive Power (MVAR)",     "dataType": "Double",  "nominal": 1.6,  "min": -2.0, "max": 4.5, "noisePercent": 5.0 },
+            { "id": "FDR_003_RECLOSER_OPS", "displayName": "Recloser Operations",       "dataType": "Int32",   "value": 28, "writable": false },
+            { "id": "FDR_003_CB_CMD_OPEN",  "displayName": "Trip Feeder",               "dataType": "Boolean", "value": false },
+            { "id": "FDR_003_CB_CMD_CLOSE", "displayName": "Close Feeder",              "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "FDR_004",
+          "displayName": "Feeder F4 — Hospital / Critical Loads",
+          "variables": [
+            { "id": "FDR_004_CB_STATUS",    "displayName": "Feeder Breaker (1=Closed)", "dataType": "Boolean", "value": true  },
+            { "id": "FDR_004_CURRENT",      "displayName": "Load Current (A)",          "dataType": "Double",  "nominal": 263, "min": 100, "max": 420, "noisePercent": 1.5 },
+            { "id": "FDR_004_VOLTAGE",      "displayName": "Feeder Voltage (kV)",       "dataType": "Double",  "nominal": 13.72, "min": 12.8, "max": 14.5, "noisePercent": 0.15 },
+            { "id": "FDR_004_MW",           "displayName": "Real Power (MW)",           "dataType": "Double",  "nominal": 6.2,  "min": 2.0, "max": 11.0, "noisePercent": 1.5 },
+            { "id": "FDR_004_MVAR",         "displayName": "Reactive Power (MVAR)",     "dataType": "Double",  "nominal": 1.4,  "min": 0.5, "max": 3.5,  "noisePercent": 2.0 },
+            { "id": "FDR_004_RECLOSER_OPS", "displayName": "Recloser Operations",       "dataType": "Int32",   "value": 3, "writable": false },
+            { "id": "FDR_004_CB_CMD_OPEN",  "displayName": "Trip Feeder",               "dataType": "Boolean", "value": false },
+            { "id": "FDR_004_CB_CMD_CLOSE", "displayName": "Close Feeder",              "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CapacitorBanks",
+      "displayName": "Capacitor Banks",
+      "children": [
+        {
+          "id": "CAP_001",
+          "displayName": "Capacitor Bank CAP-1 (5 MVAR)",
+          "variables": [
+            { "id": "CAP_001_STATUS",          "displayName": "Bank Status (1=Energized)", "dataType": "Boolean", "value": true  },
+            { "id": "CAP_001_MVAR",            "displayName": "MVAR Output",               "dataType": "Double",  "nominal": 4.92, "min": 0.0, "max": 5.2, "noisePercent": 0.5 },
+            { "id": "CAP_001_VOLTAGE",         "displayName": "Bank Voltage (kV)",         "dataType": "Double",  "nominal": 13.82, "min": 12.8, "max": 14.5, "noisePercent": 0.2 },
+            { "id": "CAP_001_SWITCH_COUNT",    "displayName": "Switching Operations",      "dataType": "Int32",   "value": 1847, "writable": false },
+            { "id": "CAP_001_ALM_OVERCURRENT", "displayName": "Overcurrent Alarm",         "dataType": "Boolean", "value": false },
+            { "id": "CAP_001_CMD_ENERGIZE",    "displayName": "Energize Bank",             "dataType": "Boolean", "value": false },
+            { "id": "CAP_001_CMD_DEENERGIZE",  "displayName": "De-energize Bank",          "dataType": "Boolean", "value": false }
+          ]
+        },
+        {
+          "id": "CAP_002",
+          "displayName": "Capacitor Bank CAP-2 (5 MVAR, Standby)",
+          "variables": [
+            { "id": "CAP_002_STATUS",          "displayName": "Bank Status (1=Energized)", "dataType": "Boolean", "value": false },
+            { "id": "CAP_002_MVAR",            "displayName": "MVAR Output",               "dataType": "Double",  "nominal": 0.0,  "min": 0.0, "max": 5.2, "noisePercent": 0.0 },
+            { "id": "CAP_002_VOLTAGE",         "displayName": "Bank Voltage (kV)",         "dataType": "Double",  "nominal": 13.80, "min": 12.8, "max": 14.5, "noisePercent": 0.2 },
+            { "id": "CAP_002_SWITCH_COUNT",    "displayName": "Switching Operations",      "dataType": "Int32",   "value": 2203, "writable": false },
+            { "id": "CAP_002_ALM_OVERCURRENT", "displayName": "Overcurrent Alarm",         "dataType": "Boolean", "value": false },
+            { "id": "CAP_002_CMD_ENERGIZE",    "displayName": "Energize Bank",             "dataType": "Boolean", "value": false },
+            { "id": "CAP_002_CMD_DEENERGIZE",  "displayName": "De-energize Bank",          "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ProtectionRelays",
+      "displayName": "Protection Relays",
+      "children": [
+        {
+          "id": "REL_OC_001",
+          "displayName": "Overcurrent Relay (SEL-351S)",
+          "variables": [
+            { "id": "REL_OC_001_ENABLED",    "displayName": "Relay Enabled",              "dataType": "Boolean", "value": true  },
+            { "id": "REL_OC_001_PICKUP_A",   "displayName": "Phase Pickup Current (A)",   "dataType": "Double",  "nominal": 200,  "min": 50,   "max": 600,  "noisePercent": 0.0 },
+            { "id": "REL_OC_001_TD",         "displayName": "Time Dial Setting",          "dataType": "Double",  "nominal": 5.0,  "min": 0.5,  "max": 15.0, "noisePercent": 0.0 },
+            { "id": "REL_OC_001_TRIP_COUNT", "displayName": "Trip Operations",            "dataType": "Int32",   "value": 14, "writable": false },
+            { "id": "REL_OC_001_LAST_TRIP",  "displayName": "Last Trip Current (A)",      "dataType": "Double",  "nominal": 0,    "min": 0,    "max": 5000, "noisePercent": 0.0 }
+          ]
+        },
+        {
+          "id": "REL_DIFF_001",
+          "displayName": "Transformer Differential Relay (SEL-387)",
+          "variables": [
+            { "id": "REL_DIFF_001_ENABLED",    "displayName": "Relay Enabled",            "dataType": "Boolean", "value": true  },
+            { "id": "REL_DIFF_001_OPR_CURR",   "displayName": "Operating Current (pu)",   "dataType": "Double",  "nominal": 0.04, "min": 0,    "max": 1.0,  "noisePercent": 5.0 },
+            { "id": "REL_DIFF_001_RST_CURR",   "displayName": "Restraint Current (pu)",   "dataType": "Double",  "nominal": 0.88, "min": 0,    "max": 2.0,  "noisePercent": 2.0 },
+            { "id": "REL_DIFF_001_TRIP_COUNT", "displayName": "Trip Operations",          "dataType": "Int32",   "value": 2, "writable": false }
+          ]
+        },
+        {
+          "id": "REL_DIST_001",
+          "displayName": "Distance Relay (SEL-421)",
+          "variables": [
+            { "id": "REL_DIST_001_ENABLED",    "displayName": "Relay Enabled",            "dataType": "Boolean", "value": true  },
+            { "id": "REL_DIST_001_Z1_REACH",   "displayName": "Zone 1 Reach (Ohm)",       "dataType": "Double",  "nominal": 12.5, "min": 5.0,  "max": 30.0, "noisePercent": 0.0 },
+            { "id": "REL_DIST_001_TRIP_COUNT", "displayName": "Trip Operations",          "dataType": "Int32",   "value": 7, "writable": false },
+            { "id": "REL_DIST_001_COMM_OK",    "displayName": "POTT Comm Channel OK",     "dataType": "Boolean", "value": true, "writable": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DC_System",
+      "displayName": "Station DC System (125V)",
+      "children": [
+        {
+          "id": "BATT_001",
+          "displayName": "Station Battery Bank (60-cell, 125VDC)",
+          "variables": [
+            { "id": "BATT_001_VOLTAGE",        "displayName": "Battery Voltage (V)",      "dataType": "Double",  "nominal": 127.4, "min": 110.0, "max": 135.0, "noisePercent": 0.2 },
+            { "id": "BATT_001_CURRENT",        "displayName": "Float Current (A)",        "dataType": "Double",  "nominal": 6.2,   "min": -50.0, "max": 60.0,  "noisePercent": 3.0 },
+            { "id": "BATT_001_SOC",            "displayName": "State of Charge (%)",      "dataType": "Double",  "nominal": 98.5,  "min": 10.0,  "max": 100.0, "noisePercent": 0.2 },
+            { "id": "BATT_001_TEMP",           "displayName": "Battery Room Temp (C)",    "dataType": "Double",  "nominal": 24.5,  "min": 15.0,  "max": 40.0,  "noisePercent": 0.5 },
+            { "id": "BATT_001_CHARGER_STATUS", "displayName": "Charger On-line",          "dataType": "Boolean", "value": true  },
+            { "id": "BATT_001_GND_FAULT",      "displayName": "Ground Fault Alarm",       "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SafetySystems",
+      "displayName": "Safety Systems",
+      "children": [
+        {
+          "id": "LOCKOUT",
+          "displayName": "Lockout Relay (86)",
+          "variables": [
+            { "id": "LOCKOUT_RLY_001_STATUS",     "displayName": "86 Lockout Status (0=Normal)", "dataType": "Int32",   "value": 0, "writable": false },
+            { "id": "LOCKOUT_RLY_001_PICKUP",     "displayName": "Lockout Initiating Signal",    "dataType": "Boolean", "value": false, "writable": false },
+            { "id": "LOCKOUT_RLY_001_TRIP_COUNT", "displayName": "Lockout Operations",           "dataType": "Int32",   "value": 3, "writable": false }
+          ],
+          "methods": [
+            { "id": "LOCKOUT_RLY_001_CMD_TRIP",  "displayName": "Trip All Breakers (86 Lockout)" },
+            { "id": "LOCKOUT_RLY_001_CMD_RESET", "displayName": "Reset Lockout Relay" }
+          ]
+        },
+        {
+          "id": "ESD",
+          "displayName": "Emergency Shutdown",
+          "variables": [
+            { "id": "ESD_STATUS", "displayName": "ESD Status (0=Healthy)", "dataType": "Int32",  "value": 0, "writable": false },
+            { "id": "ESD_LEVEL",  "displayName": "ESD Level (0-3)",        "dataType": "Int32",  "value": 0, "writable": false }
+          ],
+          "methods": [
+            { "id": "ESD_CMD_TRIGGER", "displayName": "Trigger Emergency Shutdown" },
+            { "id": "ESD_CMD_RESET",   "displayName": "Reset Emergency Shutdown"   }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SCADA_RTU",
+      "displayName": "SCADA / RTU",
+      "children": [
+        {
+          "id": "RTU_001",
+          "displayName": "ABB RTU560 Remote Terminal Unit",
+          "variables": [
+            { "id": "RTU_001_STATUS",      "displayName": "RTU Status",            "dataType": "Boolean", "value": true, "writable": false },
+            { "id": "RTU_001_COMM_MASTER", "displayName": "EMS Comm Link OK",      "dataType": "Boolean", "value": true, "writable": false },
+            { "id": "RTU_001_SCAN_RATE",   "displayName": "Scan Rate (ms)",        "dataType": "Int32",   "value": 1000, "writable": false },
+            { "id": "RTU_001_ALARM_COUNT", "displayName": "Active Alarms",         "dataType": "Int32",   "value": 1,    "writable": false },
+            { "id": "RTU_001_HIST_CONN",   "displayName": "Historian Connected",   "dataType": "Boolean", "value": true, "writable": false }
+          ]
+        }
+      ]
+    }
+  ],
+  "simulationRules": [
+    { "pattern": "BATT_001_SOC", "behavior": "slowDecline", "rate": 0.0005 }
+  ],
+  "hardening": {
+    "errorHandling": {
+      "suppressInternalErrors": true,
+      "exposeDiagnosticInfo": false
+    },
+    "timing": {
+      "enabled": true,
+      "minDelayMs": 15,
+      "maxDelayMs": 55
+    },
+    "serverStatus": {
+      "manufacturer": "ABB",
+      "productName": "RTU560 Remote Terminal Unit",
+      "softwareVersion": "11.7.3",
+      "buildNumber": "11073-20231105",
+      "startupAgeMinDays": 45,
+      "startupAgeMaxDays": 180,
+      "cumulatedSessionCountBase": 3200
+    },
+    "serviceRestrictions": {
+      "historyReadEnabled": true,
+      "maxNodesPerRead": 200,
+      "maxNodesPerBrowse": 500
+    },
+    "resourceLimits": {
+      "maxSessions": 15,
+      "maxSubscriptionsPerSession": 30,
+      "maxMonitoredItemsPerSubscription": 300
+    },
+    "authentication": {
+      "allowAnonymous": false,
+      "requireEncryption": false,
+      "allowedSecurityPolicies": [ "None", "Basic256Sha256", "Aes128_Sha256_RsaOaep" ],
+      "credentialBehavior": "selective",
+      "decoyCredentials": [
+        { "username": "dispatcher",  "password": "Disp@tch1"    },
+        { "username": "relay_eng",   "password": "R3lay#2024"   },
+        { "username": "scada_svc",   "password": "Sc4da$vc!"    }
+      ],
+      "failedLoginDelayMs": 2000,
+      "accountLockout": {
+        "enabled": true,
+        "threshold": 5,
+        "durationSeconds": 600
+      }
+    }
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "profileName": "oil-gas",
+  "facilityName": "PetroVista Central Processing Facility",
+  "identity": {
+    "applicationName": "PetroVista SCADA Gateway",
+    "applicationUri": "urn:petrovista:scada:gateway:EF-U7",
+    "organizationName": "Meridian Petroleum Corp",
+    "location": "San Antonio"
+  },
+  "tagClassification": {
+    "criticalPrefixes": ["ESD_", "SDV_", "ESDV_"],
+    "criticalContains": ["_CMD_TRIGGER", "_CMD_RESET", "_CMD_START", "_CMD_STOP", "_PSP_", "_LAHH", "_LAL", "_XV"],
+    "criticalExact": ["ESD_STATUS", "ESD_LEVEL", "ESD_CMD_TRIGGER", "ESD_CMD_RESET", "SDV_701_POS", "SDV_702_POS", "PL_EXPORT_601_XV"],
+    "sensitivePrefixes": ["WH_", "SEP_", "TK_", "COMP_", "PMP_", "PL_", "GD_", "FD_"]
+  },
+  "folders": [
+    {
+      "id": "Site_Information",
+      "displayName": "Site Information",
+      "variables": [
+        { "id": "SITE_NAME", "displayName": "Site Name", "dataType": "String", "value": "Eagle Ford Unit 7 CPF", "writable": false },
+        { "id": "SITE_LOCATION", "displayName": "Location", "dataType": "String", "value": "28.4532N, 98.7621W", "writable": false },
+        { "id": "SITE_OPERATOR", "displayName": "Operator", "dataType": "String", "value": "Meridian Petroleum Corp", "writable": false },
+        { "id": "SITE_API", "displayName": "API Number", "dataType": "String", "value": "42-285-34721", "writable": false },
+        { "id": "SITE_CAPACITY", "displayName": "Design Capacity (BOPD)", "dataType": "String", "value": "15000", "writable": false }
+      ]
+    },
+    {
+      "id": "Wellheads",
+      "displayName": "Wellheads",
+      "children": [
+        {
+          "id": "WH_101",
+          "displayName": "Well 101",
+          "variables": [
+            { "id": "WH_101_PT_1001", "displayName": "Tubing Pressure (PSI)", "dataType": "Double", "nominal": 850, "min": 700, "max": 1500, "noisePercent": 1.5 },
+            { "id": "WH_101_PT_1002", "displayName": "Casing Pressure (PSI)", "dataType": "Double", "nominal": 90, "min": 30, "max": 250, "noisePercent": 2.0 },
+            { "id": "WH_101_TT_1001", "displayName": "Wellhead Temp (F)", "dataType": "Double", "nominal": 145, "min": 100, "max": 200, "noisePercent": 1.0 },
+            { "id": "WH_101_FT_1001", "displayName": "Oil Flow Rate (bbl/d)", "dataType": "Double", "nominal": 400, "min": 100, "max": 800, "noisePercent": 3.0 },
+            { "id": "WH_101_FT_1002", "displayName": "Gas Flow Rate (MCF/d)", "dataType": "Double", "nominal": 580, "min": 100, "max": 1500, "noisePercent": 3.0 },
+            { "id": "WH_101_FT_1003", "displayName": "Water Flow Rate (bbl/d)", "dataType": "Double", "nominal": 150, "min": 20, "max": 500, "noisePercent": 4.0 },
+            { "id": "WH_101_CV_1001", "displayName": "Choke Position (%)", "dataType": "Double", "nominal": 50, "min": 10, "max": 95, "noisePercent": 0.5 }
+          ]
+        },
+        {
+          "id": "WH_102",
+          "displayName": "Well 102",
+          "variables": [
+            { "id": "WH_102_PT_1001", "displayName": "Tubing Pressure (PSI)", "dataType": "Double", "nominal": 900, "min": 700, "max": 1500, "noisePercent": 1.5 },
+            { "id": "WH_102_PT_1002", "displayName": "Casing Pressure (PSI)", "dataType": "Double", "nominal": 100, "min": 30, "max": 250, "noisePercent": 2.0 },
+            { "id": "WH_102_TT_1001", "displayName": "Wellhead Temp (F)", "dataType": "Double", "nominal": 150, "min": 100, "max": 200, "noisePercent": 1.0 },
+            { "id": "WH_102_FT_1001", "displayName": "Oil Flow Rate (bbl/d)", "dataType": "Double", "nominal": 450, "min": 100, "max": 800, "noisePercent": 3.0 },
+            { "id": "WH_102_FT_1002", "displayName": "Gas Flow Rate (MCF/d)", "dataType": "Double", "nominal": 660, "min": 100, "max": 1500, "noisePercent": 3.0 },
+            { "id": "WH_102_FT_1003", "displayName": "Water Flow Rate (bbl/d)", "dataType": "Double", "nominal": 180, "min": 20, "max": 500, "noisePercent": 4.0 },
+            { "id": "WH_102_CV_1001", "displayName": "Choke Position (%)", "dataType": "Double", "nominal": 55, "min": 10, "max": 95, "noisePercent": 0.5 }
+          ]
+        },
+        {
+          "id": "WH_103",
+          "displayName": "Well 103",
+          "variables": [
+            { "id": "WH_103_PT_1001", "displayName": "Tubing Pressure (PSI)", "dataType": "Double", "nominal": 950, "min": 700, "max": 1500, "noisePercent": 1.5 },
+            { "id": "WH_103_PT_1002", "displayName": "Casing Pressure (PSI)", "dataType": "Double", "nominal": 110, "min": 30, "max": 250, "noisePercent": 2.0 },
+            { "id": "WH_103_TT_1001", "displayName": "Wellhead Temp (F)", "dataType": "Double", "nominal": 155, "min": 100, "max": 200, "noisePercent": 1.0 },
+            { "id": "WH_103_FT_1001", "displayName": "Oil Flow Rate (bbl/d)", "dataType": "Double", "nominal": 500, "min": 100, "max": 800, "noisePercent": 3.0 },
+            { "id": "WH_103_FT_1002", "displayName": "Gas Flow Rate (MCF/d)", "dataType": "Double", "nominal": 740, "min": 100, "max": 1500, "noisePercent": 3.0 },
+            { "id": "WH_103_FT_1003", "displayName": "Water Flow Rate (bbl/d)", "dataType": "Double", "nominal": 210, "min": 20, "max": 500, "noisePercent": 4.0 },
+            { "id": "WH_103_CV_1001", "displayName": "Choke Position (%)", "dataType": "Double", "nominal": 60, "min": 10, "max": 95, "noisePercent": 0.5 }
+          ]
+        },
+        {
+          "id": "WH_104",
+          "displayName": "Well 104",
+          "variables": [
+            { "id": "WH_104_PT_1001", "displayName": "Tubing Pressure (PSI)", "dataType": "Double", "nominal": 1000, "min": 700, "max": 1500, "noisePercent": 1.5 },
+            { "id": "WH_104_PT_1002", "displayName": "Casing Pressure (PSI)", "dataType": "Double", "nominal": 120, "min": 30, "max": 250, "noisePercent": 2.0 },
+            { "id": "WH_104_TT_1001", "displayName": "Wellhead Temp (F)", "dataType": "Double", "nominal": 160, "min": 100, "max": 200, "noisePercent": 1.0 },
+            { "id": "WH_104_FT_1001", "displayName": "Oil Flow Rate (bbl/d)", "dataType": "Double", "nominal": 550, "min": 100, "max": 800, "noisePercent": 3.0 },
+            { "id": "WH_104_FT_1002", "displayName": "Gas Flow Rate (MCF/d)", "dataType": "Double", "nominal": 820, "min": 100, "max": 1500, "noisePercent": 3.0 },
+            { "id": "WH_104_FT_1003", "displayName": "Water Flow Rate (bbl/d)", "dataType": "Double", "nominal": 240, "min": 20, "max": 500, "noisePercent": 4.0 },
+            { "id": "WH_104_CV_1001", "displayName": "Choke Position (%)", "dataType": "Double", "nominal": 65, "min": 10, "max": 95, "noisePercent": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Separators",
+      "displayName": "Separators",
+      "children": [
+        {
+          "id": "SEP_HP_201",
+          "displayName": "HP Separator",
+          "variables": [
+            { "id": "SEP_HP_201_PT_2001", "displayName": "Inlet Pressure (PSI)", "dataType": "Double", "nominal": 1050, "min": 900, "max": 1250, "noisePercent": 1.0 },
+            { "id": "SEP_HP_201_TT_2001", "displayName": "Inlet Temp (F)", "dataType": "Double", "nominal": 135, "min": 100, "max": 170, "noisePercent": 1.0 },
+            { "id": "SEP_HP_201_LT_2001", "displayName": "Level (%)", "dataType": "Double", "nominal": 50, "min": 25, "max": 75, "noisePercent": 2.0 },
+            { "id": "SEP_HP_201_FT_2001", "displayName": "Oil Outlet (bbl/d)", "dataType": "Double", "nominal": 1600, "min": 500, "max": 3000, "noisePercent": 2.5 },
+            { "id": "SEP_HP_201_FT_2002", "displayName": "Gas Outlet (MCF/d)", "dataType": "Double", "nominal": 2800, "min": 500, "max": 5000, "noisePercent": 2.5 },
+            { "id": "SEP_HP_201_FT_2003", "displayName": "Water Outlet (bbl/d)", "dataType": "Double", "nominal": 600, "min": 100, "max": 1500, "noisePercent": 3.0 },
+            { "id": "SEP_HP_201_PSP_2001", "displayName": "Pressure Setpoint (PSI)", "dataType": "Double", "nominal": 1050, "min": 900, "max": 1250, "noisePercent": 0.0 }
+          ]
+        },
+        {
+          "id": "SEP_LP_202",
+          "displayName": "LP Separator",
+          "variables": [
+            { "id": "SEP_LP_202_PT_2001", "displayName": "Inlet Pressure (PSI)", "dataType": "Double", "nominal": 150, "min": 80, "max": 250, "noisePercent": 1.2 },
+            { "id": "SEP_LP_202_TT_2001", "displayName": "Inlet Temp (F)", "dataType": "Double", "nominal": 110, "min": 80, "max": 140, "noisePercent": 1.0 },
+            { "id": "SEP_LP_202_LT_2001", "displayName": "Level (%)", "dataType": "Double", "nominal": 48, "min": 20, "max": 75, "noisePercent": 2.5 },
+            { "id": "SEP_LP_202_PSP_2001", "displayName": "Pressure Setpoint (PSI)", "dataType": "Double", "nominal": 150, "min": 80, "max": 250, "noisePercent": 0.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TankFarm",
+      "displayName": "Tank Farm",
+      "children": [
+        {
+          "id": "TK_OIL_301",
+          "displayName": "Oil Storage Tank 301",
+          "variables": [
+            { "id": "TK_OIL_301_LT_3001", "displayName": "Level (%)", "dataType": "Double", "nominal": 55, "min": 5, "max": 98, "noisePercent": 0.3 },
+            { "id": "TK_OIL_301_TT_3001", "displayName": "Temperature (F)", "dataType": "Double", "nominal": 88, "min": 60, "max": 130, "noisePercent": 0.8 },
+            { "id": "TK_OIL_301_LAHH", "displayName": "High-High Level Alarm (%)", "dataType": "Double", "nominal": 92, "min": 85, "max": 98, "noisePercent": 0.0 },
+            { "id": "TK_OIL_301_LAH", "displayName": "High Level Alarm (%)", "dataType": "Double", "nominal": 85, "min": 75, "max": 92, "noisePercent": 0.0 },
+            { "id": "TK_OIL_301_LAL", "displayName": "Low Level Alarm (%)", "dataType": "Double", "nominal": 15, "min": 5, "max": 25, "noisePercent": 0.0 },
+            { "id": "TK_OIL_301_XV_IN", "displayName": "Inlet Valve Status", "dataType": "Boolean", "value": true },
+            { "id": "TK_OIL_301_XV_OUT", "displayName": "Outlet Valve Status", "dataType": "Boolean", "value": true }
+          ]
+        },
+        {
+          "id": "TK_OIL_302",
+          "displayName": "Oil Storage Tank 302",
+          "variables": [
+            { "id": "TK_OIL_302_LT_3001", "displayName": "Level (%)", "dataType": "Double", "nominal": 70, "min": 5, "max": 98, "noisePercent": 0.3 },
+            { "id": "TK_OIL_302_TT_3001", "displayName": "Temperature (F)", "dataType": "Double", "nominal": 88, "min": 60, "max": 130, "noisePercent": 0.8 },
+            { "id": "TK_OIL_302_LAHH", "displayName": "High-High Level Alarm (%)", "dataType": "Double", "nominal": 92, "min": 85, "max": 98, "noisePercent": 0.0 },
+            { "id": "TK_OIL_302_LAH", "displayName": "High Level Alarm (%)", "dataType": "Double", "nominal": 85, "min": 75, "max": 92, "noisePercent": 0.0 },
+            { "id": "TK_OIL_302_LAL", "displayName": "Low Level Alarm (%)", "dataType": "Double", "nominal": 15, "min": 5, "max": 25, "noisePercent": 0.0 },
+            { "id": "TK_OIL_302_XV_IN", "displayName": "Inlet Valve Status", "dataType": "Boolean", "value": true },
+            { "id": "TK_OIL_302_XV_OUT", "displayName": "Outlet Valve Status", "dataType": "Boolean", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PumpStations",
+      "displayName": "Pump Stations",
+      "children": [
+        {
+          "id": "PMP_XFER_401",
+          "displayName": "Transfer Pump 401",
+          "variables": [
+            { "id": "PMP_XFER_401_RUN", "displayName": "Run Status", "dataType": "Boolean", "value": true },
+            { "id": "PMP_XFER_401_SPD", "displayName": "Speed (RPM)", "dataType": "Double", "nominal": 1450, "min": 800, "max": 1800, "noisePercent": 1.0 },
+            { "id": "PMP_XFER_401_PT_DIS", "displayName": "Discharge Pressure (PSI)", "dataType": "Double", "nominal": 280, "min": 150, "max": 400, "noisePercent": 1.5 },
+            { "id": "PMP_XFER_401_PT_SUC", "displayName": "Suction Pressure (PSI)", "dataType": "Double", "nominal": 12, "min": 3, "max": 30, "noisePercent": 2.0 },
+            { "id": "PMP_XFER_401_IT_MOT", "displayName": "Motor Current (A)", "dataType": "Double", "nominal": 85, "min": 30, "max": 140, "noisePercent": 1.5 },
+            { "id": "PMP_XFER_401_TT_MOT", "displayName": "Motor Temp (F)", "dataType": "Double", "nominal": 175, "min": 120, "max": 230, "noisePercent": 0.8 },
+            { "id": "PMP_XFER_401_RUNHRS", "displayName": "Run Hours", "dataType": "Double", "nominal": 18742, "min": 0, "max": 100000, "noisePercent": 0.0 },
+            { "id": "PMP_XFER_401_CMD_START", "displayName": "Start Command", "dataType": "Boolean", "value": false },
+            { "id": "PMP_XFER_401_CMD_STOP", "displayName": "Stop Command", "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CompressorStation",
+      "displayName": "Compressor Station",
+      "children": [
+        {
+          "id": "COMP_501",
+          "displayName": "Compressor 501",
+          "variables": [
+            { "id": "COMP_501_PT_SUC", "displayName": "Suction Pressure (PSI)", "dataType": "Double", "nominal": 55, "min": 20, "max": 100, "noisePercent": 1.5 },
+            { "id": "COMP_501_PT_DIS", "displayName": "Discharge Pressure (PSI)", "dataType": "Double", "nominal": 420, "min": 200, "max": 650, "noisePercent": 1.2 },
+            { "id": "COMP_501_TT_SUC", "displayName": "Suction Temp (F)", "dataType": "Double", "nominal": 82, "min": 60, "max": 100, "noisePercent": 0.8 },
+            { "id": "COMP_501_TT_DIS", "displayName": "Discharge Temp (F)", "dataType": "Double", "nominal": 245, "min": 150, "max": 350, "noisePercent": 1.0 },
+            { "id": "COMP_501_RPM", "displayName": "Speed (RPM)", "dataType": "Double", "nominal": 950, "min": 700, "max": 1200, "noisePercent": 0.5 },
+            { "id": "COMP_501_VIB", "displayName": "Vibration (in/sec)", "dataType": "Double", "nominal": 0.18, "min": 0.02, "max": 0.8, "noisePercent": 5.0 },
+            { "id": "COMP_501_PT_OIL", "displayName": "Lube Oil Pressure (PSI)", "dataType": "Double", "nominal": 52, "min": 35, "max": 70, "noisePercent": 1.0 },
+            { "id": "COMP_501_RUN", "displayName": "Run Status", "dataType": "Boolean", "value": true },
+            { "id": "COMP_501_LOAD_PCT", "displayName": "Load (%)", "dataType": "Double", "nominal": 72, "min": 30, "max": 100, "noisePercent": 1.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Pipelines",
+      "displayName": "Pipelines",
+      "children": [
+        {
+          "id": "PL_EXPORT_601",
+          "displayName": "Export Pipeline",
+          "variables": [
+            { "id": "PL_EXPORT_601_PT_IN", "displayName": "Inlet Pressure (PSI)", "dataType": "Double", "nominal": 320, "min": 200, "max": 450, "noisePercent": 1.0 },
+            { "id": "PL_EXPORT_601_PT_OUT", "displayName": "Outlet Pressure (PSI)", "dataType": "Double", "nominal": 250, "min": 150, "max": 380, "noisePercent": 1.0 },
+            { "id": "PL_EXPORT_601_FT", "displayName": "Flow Rate (bbl/d)", "dataType": "Double", "nominal": 1500, "min": 300, "max": 3000, "noisePercent": 2.0 },
+            { "id": "PL_EXPORT_601_TT", "displayName": "Temperature (F)", "dataType": "Double", "nominal": 95, "min": 60, "max": 140, "noisePercent": 0.8 },
+            { "id": "PL_EXPORT_601_VEL", "displayName": "Flow Velocity (m/s)", "dataType": "Double", "nominal": 1.6, "min": 0.3, "max": 3.5, "noisePercent": 2.0 },
+            { "id": "PL_EXPORT_601_PIG", "displayName": "Pig Detector", "dataType": "Boolean", "value": false },
+            { "id": "PL_EXPORT_601_LEAK", "displayName": "Leak Detection Status", "dataType": "Boolean", "value": false },
+            { "id": "PL_EXPORT_601_XV", "displayName": "Block Valve Status", "dataType": "Boolean", "value": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SafetySystems",
+      "displayName": "Safety Systems",
+      "children": [
+        {
+          "id": "ESD",
+          "displayName": "Emergency Shutdown",
+          "variables": [
+            { "id": "ESD_STATUS", "displayName": "ESD Status (0=Healthy)", "dataType": "Int32", "value": 0, "writable": false },
+            { "id": "ESD_LEVEL", "displayName": "ESD Level (0-3)", "dataType": "Int32", "value": 0, "writable": false },
+            { "id": "SDV_701_POS", "displayName": "Shutdown Valve 701 (Open)", "dataType": "Boolean", "value": true },
+            { "id": "SDV_702_POS", "displayName": "Shutdown Valve 702 (Open)", "dataType": "Boolean", "value": true }
+          ],
+          "methods": [
+            { "id": "ESD_CMD_TRIGGER", "displayName": "Trigger ESD" },
+            { "id": "ESD_CMD_RESET", "displayName": "Reset ESD" }
+          ]
+        },
+        {
+          "id": "FireAndGas",
+          "displayName": "Fire and Gas Detection",
+          "variables": [
+            { "id": "GD_801_LEL", "displayName": "Gas Detector 801 (%LEL)", "dataType": "Double", "nominal": 2.1, "min": 0, "max": 100, "noisePercent": 8.0 },
+            { "id": "GD_801_ALM", "displayName": "Gas Detector 801 Alarm", "dataType": "Boolean", "value": false },
+            { "id": "GD_802_LEL", "displayName": "Gas Detector 802 (%LEL)", "dataType": "Double", "nominal": 1.8, "min": 0, "max": 100, "noisePercent": 8.0 },
+            { "id": "GD_802_ALM", "displayName": "Gas Detector 802 Alarm", "dataType": "Boolean", "value": false },
+            { "id": "FD_811_STATUS", "displayName": "Flame Detector 811", "dataType": "Boolean", "value": false },
+            { "id": "FD_811_ALM", "displayName": "Flame Detector 811 Alarm", "dataType": "Boolean", "value": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Utilities",
+      "displayName": "Utilities",
+      "children": [
+        {
+          "id": "InstrumentAir",
+          "displayName": "Instrument Air",
+          "variables": [
+            { "id": "IA_PT", "displayName": "Instrument Air Pressure (PSI)", "dataType": "Double", "nominal": 98, "min": 85, "max": 110, "noisePercent": 1.0 },
+            { "id": "IA_COMP_STATUS", "displayName": "Air Compressor Status", "dataType": "Boolean", "value": true }
+          ]
+        },
+        {
+          "id": "FuelGas",
+          "displayName": "Fuel Gas",
+          "variables": [
+            { "id": "FG_PT", "displayName": "Fuel Gas Pressure (PSI)", "dataType": "Double", "nominal": 35, "min": 20, "max": 50, "noisePercent": 1.5 }
+          ]
+        },
+        {
+          "id": "PowerGen",
+          "displayName": "Power Generation",
+          "variables": [
+            { "id": "GEN_001_STATUS", "displayName": "Generator 001 Status", "dataType": "Boolean", "value": true },
+            { "id": "GEN_001_VOLTS", "displayName": "Voltage (V)", "dataType": "Double", "nominal": 480, "min": 460, "max": 500, "noisePercent": 0.3 },
+            { "id": "GEN_001_FREQ", "displayName": "Frequency (Hz)", "dataType": "Double", "nominal": 60.0, "min": 59.5, "max": 60.5, "noisePercent": 0.1 },
+            { "id": "GEN_001_LOAD", "displayName": "Load (%)", "dataType": "Double", "nominal": 62, "min": 30, "max": 95, "noisePercent": 1.0 }
+          ]
+        }
+      ]
+    }
+  ],
+  "simulationRules": [
+    { "pattern": "TK_*_LT_*", "behavior": "tankFill", "fillRate": 0.02, "drainInterval": 600, "drainPercent": 0.15 },
+    { "pattern": "WH_*_PT_1001", "behavior": "slowDecline", "rate": 0.01 }
+  ],
+  "hardening": {
+    "errorHandling": {
+      "suppressInternalErrors": true,
+      "exposeDiagnosticInfo": false
+    },
+    "timing": {
+      "enabled": true,
+      "minDelayMs": 8,
+      "maxDelayMs": 40
+    },
+    "serverStatus": {
+      "manufacturer": "Schneider Electric",
+      "productName": "SCADAPack 57x Remote Telemetry Unit",
+      "softwareVersion": "8.14.2",
+      "buildNumber": "8142-20230912",
+      "startupAgeMinDays": 14,
+      "startupAgeMaxDays": 60,
+      "cumulatedSessionCountBase": 2400
+    },
+    "serviceRestrictions": {
+      "historyReadEnabled": true,
+      "maxNodesPerRead": 100,
+      "maxNodesPerBrowse": 250
+    },
+    "resourceLimits": {
+      "maxSessions": 25,
+      "maxSubscriptionsPerSession": 50,
+      "maxMonitoredItemsPerSubscription": 500
+    },
+    "authentication": {
+      "allowAnonymous": false,
+      "requireEncryption": false,
+      "allowedSecurityPolicies": [ "Basic256Sha256", "Aes128_Sha256_RsaOaep" ],
+      "credentialBehavior": "selective",
+      "decoyCredentials": [
+        { "username": "supervisor", "password": "Super123!" },
+        { "username": "maintenance", "password": "Maint2024!" },
+        { "username": "historian", "password": "H1st0ry#2023" }
+      ],
+      "failedLoginDelayMs": 1500,
+      "accountLockout": {
+        "enabled": true,
+        "threshold": 5,
+        "durationSeconds": 300
+      }
+    }
+  }
+}
