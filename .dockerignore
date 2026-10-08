@@ -1,0 +1,38 @@
+# Version control / CI
+.git/
+.github/
+
+# Build output
+**/bin/
+**/obj/
+publish/
+
+# IDE / editor
+**/.vs/
+**/.idea/
+*.code-workspace
+
+# Runtime state (generated; never baked into the image)
+logs/
+*.pem
+*.pfx
+*.der
+
+# Python tooling
+tools/.venv/
+**/__pycache__/
+
+# Docker files themselves
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Local-only development material (not part of the published repo, excluded for clean build context)
+CLAUDE.md
+docs/
+Presentation/
+notes.md
+session-log.md
+session-chat-log.*
+RECOVERY_CHECKPOINT.md
+.claude/

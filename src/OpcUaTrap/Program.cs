@@ -25,7 +25,16 @@ namespace OpcUaTrap
             var profileName = config.Profile;
             var verbose = false;
 
-            // Override from command line
+            // Override from environment variables (Docker-friendly). Priority: CLI > env > appsettings.
+            var envProfile = Environment.GetEnvironmentVariable("OPCUATRAP_PROFILE");
+            if (!string.IsNullOrWhiteSpace(envProfile)) profileName = envProfile;
+            var envLogDir = Environment.GetEnvironmentVariable("OPCUATRAP_LOG_DIR");
+            if (!string.IsNullOrWhiteSpace(envLogDir)) logDirectory = envLogDir;
+            if (int.TryParse(Environment.GetEnvironmentVariable("OPCUATRAP_PORT"), out var envPort)) port = envPort;
+            var envVerbose = Environment.GetEnvironmentVariable("OPCUATRAP_VERBOSE");
+            if (envVerbose == "1" || string.Equals(envVerbose, "true", StringComparison.OrdinalIgnoreCase)) verbose = true;
+
+            // Override from command line (highest priority)
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "--port" && i + 1 < args.Length && int.TryParse(args[i + 1], out var p))
@@ -52,7 +61,7 @@ namespace OpcUaTrap
 
             Console.WriteLine();
             Console.WriteLine("  ╔══════════════════════════════════════════╗");
-            Console.WriteLine("  ║           OpcUaTrap v0.4.0              ║");
+            Console.WriteLine("  ║           OpcUaTrap v0.5.0              ║");
             Console.WriteLine("  ║     OPC UA ICS/SCADA Honeypot          ║");
             Console.WriteLine("  ╚══════════════════════════════════════════╝");
             Console.WriteLine();

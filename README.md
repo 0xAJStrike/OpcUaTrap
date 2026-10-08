@@ -296,6 +296,44 @@ One JSON object per line, daily rotation, thread-safe.
 
 ## Deployment
 
+### Docker (recommended)
+
+Run the published multi-arch image (amd64 + arm64):
+
+```bash
+docker run -d --name opcuatrap \
+  -p 4840:4840 \
+  -e OPCUATRAP_PROFILE=oil-gas \
+  -v opcuatrap-data:/data \
+  ghcr.io/0xajstrike/opcuatrap:latest
+```
+
+Or with Docker Compose (see [`docker-compose.yml`](docker-compose.yml)):
+
+```bash
+docker compose up -d
+docker compose logs -f        # watch live alerts
+```
+
+Configuration is via environment variables (all optional):
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OPCUATRAP_PROFILE` | `oil-gas` | `oil-gas`, `water-treatment`, or `power-grid` |
+| `OPCUATRAP_PORT` | `4840` | OPC UA listener port |
+| `OPCUATRAP_LOG_DIR` | `/data/logs` | NDJSON log directory |
+| `OPCUATRAP_VERBOSE` | `0` | `1`/`true` for debug console output |
+
+The `/data` volume persists the auto-generated certificate and NDJSON logs across
+restarts. To build the image yourself instead of pulling it:
+
+```bash
+docker build -t opcuatrap .
+```
+
+The Dockerfile clones the [LibUA fork](https://github.com/0xAJStrike/LibUA)
+automatically during the build — you do **not** need to clone it separately for Docker.
+
 ### Standalone (Windows / Linux / macOS)
 
 ```bash

@@ -1,0 +1,27 @@
+# OpcUaTrap — OPC UA ICS/SCADA honeypot
+#
+#   docker compose up -d            # build locally and run
+#   docker compose logs -f          # watch live alerts
+#   docker compose down             # stop
+#
+# To run a prebuilt image instead of building, comment out `build: .`
+# and uncomment the `image:` line below.
+
+services:
+  opcuatrap:
+    build: .
+    # image: ghcr.io/0xajstrike/opcuatrap:latest
+    container_name: opcuatrap
+    restart: unless-stopped
+    ports:
+      - "4840:4840"            # OPC UA Binary (opc.tcp)
+    environment:
+      OPCUATRAP_PROFILE: oil-gas          # oil-gas | water-treatment | power-grid
+      # OPCUATRAP_PORT: "4840"
+      # OPCUATRAP_LOG_DIR: /data/logs
+      # OPCUATRAP_VERBOSE: "0"
+    volumes:
+      - opcuatrap-data:/data   # persists certificate + NDJSON logs across restarts
+
+volumes:
+  opcuatrap-data:
