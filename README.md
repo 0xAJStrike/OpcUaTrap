@@ -34,7 +34,7 @@ Most ICS honeypots (Conpot, GRFICSv2) offer partial protocol emulation. OpcUaTra
 
 ### Prerequisites
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or newer — required to **build** from source, because the bundled LibUA multi-targets up to `net9.0`. The honeypot itself runs on the **.NET 8** runtime. *(Not needed if you use Docker — the image builds everything internally.)*
 - **LibUA** — the OPC UA stack. OpcUaTrap builds against a lightly modified fork
   ([0xAJStrike/LibUA](https://github.com/0xAJStrike/LibUA), a fork of
   [nauful/LibUA](https://github.com/nauful/LibUA)) that adds defense-in-depth
