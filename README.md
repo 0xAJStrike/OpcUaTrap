@@ -32,6 +32,21 @@ Most ICS honeypots (Conpot, GRFICSv2) offer partial protocol emulation. OpcUaTra
 
 ## Quick Start
 
+### Run with Docker (fastest)
+
+```bash
+docker run -d --name opcuatrap -p 4840:4840 \
+  -e OPCUATRAP_PROFILE=oil-gas \
+  -v opcuatrap-data:/data \
+  ghcr.io/0xajstrike/opcuatrap:latest
+```
+
+The honeypot is now live on `opc.tcp://<host>:4840`. Switch the facility with
+`-e OPCUATRAP_PROFILE=water-treatment` (or `power-grid`). The image is multi-arch
+(amd64 + arm64, so it runs on a Raspberry Pi too), non-root, and persists its
+certificate and NDJSON logs to the `opcuatrap-data` volume. Full Docker details
+(Compose, all env vars) are under [Deployment → Docker](#docker-recommended).
+
 ### Prerequisites
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or newer — required to **build** from source, because the bundled LibUA multi-targets up to `net9.0`. The honeypot itself runs on the **.NET 8** runtime. *(Not needed if you use Docker — the image builds everything internally.)*
