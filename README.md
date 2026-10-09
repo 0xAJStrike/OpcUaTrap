@@ -4,6 +4,8 @@ A **high-interaction OPC UA honeypot** for ICS/SCADA environments. Built on [Lib
 
 *Built by [0xAJStrike](https://github.com/0xAJStrike).*
 
+📄 **Talk:** [*Read the Plant like a Blueprint*](docs/Read_the_Plant_like_Blueprint.pdf) — the SecTor 2026 presentation this tool was built for (OPC UA attack surface, honeypot design, and a live demo).
+
 ## Why High Interaction?
 
 Most ICS honeypots (Conpot, GRFICSv2) offer partial protocol emulation. OpcUaTrap implements the full OPC UA Binary protocol — secure channel negotiation, session lifecycle, subscriptions, history, and all service sets. Real exploit tools and scanners (OpalOPC, Nmap OPC UA scripts) interact with it as they would a production system.
